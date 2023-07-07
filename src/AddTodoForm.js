@@ -8,7 +8,7 @@ function AddTodoForm({onAddTodo}) {
         setTodoTitle(newTodoTitle)
     }
     function handleAddTodo(event) {
-        const newObjectTitle = {
+        const newTodo = {
             title: todoTitle,
             id: Date.now()
           };
@@ -16,7 +16,7 @@ function AddTodoForm({onAddTodo}) {
         event.preventDefault()
         console.log(todoTitle)
         setTodoTitle('')
-        onAddTodo(newObjectTitle);
+        onAddTodo(newTodo);
 
     }
     return (
