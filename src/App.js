@@ -3,7 +3,8 @@ import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
 function useSemiPersistentState() {
-  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('savedTodoList')) || []
+  const [todoList, setTodoList] = useState(
+    JSON.parse(localStorage.getItem('savedTodoList')) || []
   );
 
   useEffect(() => {
@@ -17,14 +18,19 @@ function App() {
   
   const [todoList, setTodoList] = useSemiPersistentState();
 
+  function removeTodo(id) {
+    const updatedArray = todoList.filter(todo => todo.id !== id)
+    setTodoList(updatedArray);
+  }
+
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo])
   }
   return (
     <>
       <h1>Todo List</h1>
-        <TodoList todoList={todoList}/>
         <AddTodoForm onAddTodo={addTodo} />
+        <TodoList todoList={todoList} removeTodo={removeTodo} />
     </>
   );
 }

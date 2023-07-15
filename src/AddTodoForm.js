@@ -1,33 +1,36 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'; 
+import InputWithLabel from './InputWithLabel';
 
-<input name = 'title' />
 function AddTodoForm({onAddTodo}) {
     const [todoTitle, setTodoTitle] = useState('');
+    
     function handleTitleChange(event) {
         const newTodoTitle = event.target.value;
         setTodoTitle(newTodoTitle)
     }
     function handleAddTodo(event) {
+        event.preventDefault()
+
         const newTodo = {
             title: todoTitle,
             id: Date.now()
           };
 
-        event.preventDefault()
-        console.log(todoTitle)
         setTodoTitle('')
         onAddTodo(newTodo);
 
     }
     return (
         <form onSubmit = {handleAddTodo}>
-            <label htmlFor='todoTitle'>Title</label>
-            <input 
-                type='text' 
-                id='todoTitle'
+            <InputWithLabel
+                id="todoTitle"
+                onInputChange={handleTitleChange}
                 value={todoTitle}
-                onChange={handleTitleChange}
-            />
+                isFocused={true}
+            >
+                Title
+            </InputWithLabel>
+
             <button type='submit'>Add</button>
         </form>
     );
