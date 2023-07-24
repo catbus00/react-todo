@@ -8,6 +8,19 @@ function App() {
   );
 
   useEffect(() => {
+    const promise1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ data: {todoList: JSON.parse(localStorage.getItem('savedTodoList')) || [] } });
+      }, 2000);
+    });
+
+    promise1.then((result) => {
+      setTodoList(result.data.todoList);
+    })
+  }, [todoList]);
+  
+
+  useEffect(() => {
     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
   }, [todoList])
 
