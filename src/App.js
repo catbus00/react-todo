@@ -16,8 +16,6 @@ function useSemiPersistentState() {
 
 function App() {
   
-  const [todoList, setTodoList] = useSemiPersistentState();
-
   function removeTodo(id) {
     const updatedArray = todoList.filter(todo => todo.id !== id)
     setTodoList(updatedArray);
