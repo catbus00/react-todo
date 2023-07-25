@@ -39,9 +39,18 @@ function App() {
   }
   return (
     <>
-      <h1>Todo List</h1>
-        <AddTodoForm onAddTodo={addTodo} />
-        <TodoList todoList={todoList} removeTodo={removeTodo} />
+      {isLoading ? (
+        <>
+          <p>Loading...</p>
+        </>
+      ) : (
+        <>
+          <h1>Todo List</h1>
+            <AddTodoForm onAddTodo={addTodo} />
+            <TodoList todoList={todoList} removeTodo={removeTodo} />
+        </>
+        )
+      }  
     </>
   );
 }
