@@ -7,6 +7,8 @@ function App() {
     JSON.parse(localStorage.getItem('savedTodoList')) || []
   );
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const promise1 = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -16,13 +18,16 @@ function App() {
 
     promise1.then((result) => {
       setTodoList(result.data.todoList);
+      setIsLoading(false);
     })
-  }, [todoList]);
-  
+  }, [todoList]);  
 
   useEffect(() => {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-  }, [todoList])
+    if (!isLoading) {
+      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    }
+  }, [isLoading, todoList])
+
 
   function removeTodo(id) {
     const updatedArray = todoList.filter(todo => todo.id !== id)
