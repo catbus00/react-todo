@@ -10,13 +10,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const promise1 = new Promise((resolve, reject) => {
+    const promiseFetchList = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({ data: {todoList: JSON.parse(localStorage.getItem('savedTodoList')) || [] } });
       }, 2000);
     });
 
-    promise1.then((result) => {
+    promiseFetchList.then((result) => {
       setTodoList(result.data.todoList);
       setIsLoading(false);
     })
