@@ -26,7 +26,7 @@ function App() {
 
       const data = await response.json();
       
-      const todos = data.records.map((todo) => ({
+      const todos = data.records.map((todo, index) => ({
         
           title: todo.fields.title,
           id: todo.id,
