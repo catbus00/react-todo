@@ -110,11 +110,20 @@ function App() {
     },
   };
 
+  console.log('Delete ID:', id); 
+
   fetch(deleteUrl, deleteOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Error deleting todo: ${response.status}`);
       } 
+    })
+    .then(errorMessage => {
+      if (errorMessage) {
+        console.log('Delete Error Message:', errorMessage);
+      } else {
+        console.log('Delete Successful. ID:', id);
+      }
     })
     .catch(error => {
       console.log(error.message);
@@ -124,7 +133,12 @@ function App() {
 
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
-    postTodo(newTodo);
+    postTodo(newTodo).then(dataResponse => {
+      if(dataResponse) {
+        newTodo.id = dataResponse.id;
+        setTodoList([...todoList, newTodo])
+      }
+    })
   }
   
   return (
