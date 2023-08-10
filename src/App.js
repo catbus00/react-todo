@@ -30,6 +30,7 @@ function App() {
         
           title: todo.fields.title,
           id: todo.id,
+          order: index + 1, 
         }));
 
       setTodoList(todos);
@@ -110,8 +111,6 @@ function App() {
     },
   };
 
-  console.log('Delete ID:', id); 
-
   fetch(deleteUrl, deleteOptions)
     .then(response => {
       if (!response.ok) {
@@ -133,6 +132,7 @@ function App() {
 
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
+    console.log('Updated Todo List:', todoList);
     postTodo(newTodo).then(dataResponse => {
       if(dataResponse) {
         newTodo.id = dataResponse.id;
