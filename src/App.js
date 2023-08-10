@@ -42,8 +42,6 @@ function App() {
     
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     fetchData();
   }, []);
