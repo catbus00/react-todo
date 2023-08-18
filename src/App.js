@@ -80,8 +80,6 @@ function App() {
     }
 };
 
-  // const [selectedTodo, setSelectedTodo] = useState(null);
-
   function removeTodoItem(id) { 
   const deleteUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/${id}`;
   const deleteOptions = {
