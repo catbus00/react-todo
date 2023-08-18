@@ -12,7 +12,8 @@ function AddTodoForm({onAddTodo}) {
         event.preventDefault()
         const newTodo = {
             title: todoTitle,
-            id: Date.now()
+            id: '',
+            createdTime: new Date().toISOString()
           };
         
             event.preventDefault()

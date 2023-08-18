@@ -20,22 +20,23 @@ function App() {
       const response = await fetch(url, options);
       if (!response.ok) {
         const message = `Error: ${response.status}`;
-        console.log('Response:', await response.text());
         throw new Error(message);
       }
 
       const data = await response.json();
       
-      const todos = data.records.map((todo, index) => ({
+      const todos = data.records.map((todo) => ({
         
           title: todo.fields.title,
           id: todo.id,
-          order: index + 1, 
+          createdTime: todo.createdTime,
         }));
 
-      setTodoList(todos);
+      const sortedTodos = todos.sort((a, b) =>
+      a.createdTime > b.createdTime ? 1 : a.createdTime < b.createdTime ? -1 : 0
+      );       
+      setTodoList(sortedTodos);
       setIsLoading(false);
-
     } catch (error) {
       console.log(error.message)
     }
@@ -46,14 +47,6 @@ function App() {
     fetchData();
   }, []);
   
-  useEffect(() => {
-    const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList'));
-    if (savedTodoList) {
-      setTodoList(savedTodoList);
-      setIsLoading(false);
-    }
-  }, []);
-
   const postTodo = async (todo) => {
     const postTodos = {
       fields: {
@@ -86,23 +79,10 @@ function App() {
       return null;
     }
 };
-  
-  useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-    }
-  }, [todoList, isLoading]);
 
-  const [selectedTodo, setSelectedTodo] = useState(null);
+  // const [selectedTodo, setSelectedTodo] = useState(null);
 
   function removeTodoItem(id) { 
-    const removedItem = todoList.find(todo => todo.id === id);
-    
-    setSelectedTodo(removedItem);
-
-    const updatedArray = todoList.filter(todo => todo.id !== id);
-    setTodoList(updatedArray);
-
   const deleteUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/${id}`;
   const deleteOptions = {
     method: 'DELETE',
@@ -117,22 +97,16 @@ function App() {
         throw new Error(`Error deleting todo: ${response.status}`);
       } 
     })
-    .then(errorMessage => {
-      if (errorMessage) {
-        console.log('Delete Error Message:', errorMessage);
-      } else {
-        console.log('Delete Successful. ID:', id);
-      }
+    .then(() => {
+      setTodoList(prevTodoList => prevTodoList.filter(todo => todo.id !== id));
     })
     .catch(error => {
-      console.log(error.message);
+      console.log('Delete Error:', error.message);
     });
   
   }
 
   function addTodo(newTodo) {
-    setTodoList([...todoList, newTodo]);
-    console.log('Updated Todo List:', todoList);
     postTodo(newTodo).then(dataResponse => {
       if(dataResponse) {
         newTodo.id = dataResponse.id;
@@ -140,7 +114,7 @@ function App() {
       }
     })
   }
-  
+
   return (
     <>
       {isLoading ? (
