@@ -3,40 +3,116 @@ import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
 function App() {
-  const [todoList, setTodoList] = useState(
-    JSON.parse(localStorage.getItem('savedTodoList')) || []
-  );
-
+  const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const promiseFetchList = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ data: {todoList: JSON.parse(localStorage.getItem('savedTodoList')) || [] } });
-      }, 2000);
-    });
+  
+    const fetchData = async() => {
+      const options = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        }
+      };
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
 
-    promiseFetchList.then((result) => {
-      setTodoList(result.data.todoList);
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      
+      const todos = data.records.map((todo) => ({
+        
+          title: todo.fields.title,
+          id: todo.id,
+          createdTime: todo.createdTime,
+        }));
+
+      const sortedTodos = todos.sort((a, b) =>
+      a.createdTime > b.createdTime ? 1 : a.createdTime < b.createdTime ? -1 : 0
+      );       
+      setTodoList(sortedTodos);
       setIsLoading(false);
-    })
-  }, [todoList]);  
+    } catch (error) {
+      console.log(error.message)
+    }
+    
+  };
 
   useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    fetchData();
+  }, []);
+  
+  const postTodo = async (todo) => {
+    const postTodos = {
+      fields: {
+        title: todo.title,
+      },
+    };
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+      },
+      body: JSON.stringify(postTodos),
+    };
+  
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
+  
+    try{
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        const message = `Error has occurred: ${response.status}`;
+        throw new Error(message);
+      }
+
+      const dataResponse = await response.json();
+      return dataResponse;
+
+    } catch (error) {
+      console.log(error.message)
+      return null;
     }
-  }, [isLoading, todoList])
+};
 
+  function removeTodoItem(id) { 
+  const deleteUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/${id}`;
+  const deleteOptions = {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+    },
+  };
 
-  function removeTodo(id) {
-    const updatedArray = todoList.filter(todo => todo.id !== id)
-    setTodoList(updatedArray);
+  fetch(deleteUrl, deleteOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error deleting todo: ${response.status}`);
+      } 
+    })
+    .then(() => {
+      setTodoList(prevTodoList => prevTodoList.filter(todo => todo.id !== id));
+    })
+    .catch(error => {
+      console.log('Delete Error:', error.message);
+    });
+  
   }
 
   function addTodo(newTodo) {
-    setTodoList([...todoList, newTodo])
+    postTodo(newTodo).then(dataResponse => {
+      if(dataResponse) {
+        newTodo.id = dataResponse.id;
+        setTodoList([...todoList, newTodo])
+      }
+    })
   }
+
   return (
     <>
       {isLoading ? (
@@ -47,7 +123,7 @@ function App() {
         <>
           <h1>Todo List</h1>
             <AddTodoForm onAddTodo={addTodo} />
-            <TodoList todoList={todoList} removeTodo={removeTodo} />
+            <TodoList todoList={todoList} removeTodo={removeTodoItem} />
         </>
         )
       }  
