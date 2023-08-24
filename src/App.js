@@ -111,14 +111,16 @@ function App() {
         <Route path="/new" element = {<h1>New Todo List</h1>} />
         <Route 
           path="/" 
-          element = 
-            {isLoading ? (
+          element = {
+          <>
+            <h1>Todo List</h1>
+              {isLoading ? (
               <>
                 <p>Loading...</p>
               </>
             ) : (
               <>
-                <h1>Todo List</h1>
+
                   <AddTodoForm 
                     onAddTodo={addTodo} 
                   />
@@ -126,8 +128,9 @@ function App() {
                     todoList={todoList} 
                     removeTodo={removeTodo} 
                   />
+                  </>
+                )}
               </>
-              )
             }
         />
       </Routes>
