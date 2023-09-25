@@ -45,20 +45,9 @@ function App() {
     }));
   };
 
-  // http://my.domain.com // landing page // App.js
-  // http://my.domain.com/todos // displaying all the todos // TodoList.js (show all state)
-
-  // http://my.domain.com/todo // specific todo (any state for specific todo)
-  // http://my.domain.com/todo/1234 // any operation with specific todo e.g. with ID 1234 (default to show specific todo)
-  // or
-  // http://my.domain.com/todo/new // creating new todo (display specific one state)
-  // http://my.domain.com/todo/show/1234 // displaying todo with ID 1234 (display specific one state)
-  // http://my.domain.com/todo/edit/1234 // editing todo with ID 1234 (display specific one state)
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/todo" element={<h1>New Todo List</h1>} />
         <Route path="/todo" element={<h1>New Todo List</h1>} />
         <Route
           path="/"
@@ -89,3 +78,4 @@ function App() {
 }
 
 export default App;
+
