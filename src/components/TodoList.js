@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
 
 function TodoList({
-  todoList, removeTodo, isChecked, handleChange,
+  todoList, onRemoveTodo, isChecked, handleChange,
 }) {
 
   TodoList.propTypes = {
     todoList: PropTypes.array.isRequired,
-    removeTodo: PropTypes.func.isRequired,
+    onRemoveTodo: PropTypes.func.isRequired,
     isChecked: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
   };
@@ -19,7 +19,7 @@ function TodoList({
         <TodoListItem
           key={todo.id}
           todo={todo}
-          removeTodo={removeTodo}
+          onRemoveTodo={onRemoveTodo}
           isChecked={isChecked[todo.id]}
           handleChange={() => handleChange(todo.id)}
         />

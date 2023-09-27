@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
 
@@ -23,10 +23,6 @@ function AddTodoForm({ onAddTodo }) {
     onAddTodo(newTodo);
   }
 
-  AddTodoForm.propTypes = {
-    onAddTodo: PropTypes.func.isRequired,
-  };
-
   return (
     <form onSubmit={handleAddTodo}>
       <div className="input-container">
@@ -43,5 +39,9 @@ function AddTodoForm({ onAddTodo }) {
     </form>
   );
 }
+
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func.isRequired,
+};
 
 export default AddTodoForm;

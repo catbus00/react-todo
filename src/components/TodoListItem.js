@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import './App.css';
 
 function TodoListItem({
-  todo, removeTodo, isChecked, handleChange,
+  todo, onRemoveTodo, isChecked, handleChange,
 }) {
   const onRemoveClick = () => {
-    removeTodo(todo.id);
+    onRemoveTodo(todo.id);
   };
 
   const handleCheckboxChange = () => {
@@ -15,7 +15,7 @@ function TodoListItem({
 
   TodoListItem.propTypes = {
     todo: PropTypes.object.isRequired,
-    removeTodo: PropTypes.func.isRequired,
+    onRemoveTodo: PropTypes.func.isRequired,
     isChecked: PropTypes.bool.isRequired,
     handleChange: PropTypes.func.isRequired,
   };
