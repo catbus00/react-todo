@@ -35,10 +35,10 @@ const fetchAndSortTodos = async (table, sortOptions = undefined) => {
   return sortedTodos;
 };
 
-const postTodo = async (table, todo) => {
+const postTodo = async (table, title) => {
   const newTodo = {
     fields: {
-      title: todo.title,
+      title,
     },
   };
 
@@ -87,12 +87,9 @@ const removeTodo = async (table, id) => {
   }
 };
 
-const addTodo = async (table, newTodo) => {
-  const dataResponse = await postTodo(table, newTodo);
-  if (dataResponse) {
-    return dataResponse.id;
-  }
-  return undefined;
+const addTodo = async (table, title) => {
+  const dataResponse = await postTodo(table, title);
+  return dataResponse;
 };
 
 const api = {

@@ -47,11 +47,14 @@ const TodoContainer = ({ tableName }) => {
     }
   };
 
-  const addTodo = async (newTodo) => {
-    const id = await api.addTodo(tableName, newTodo);
-    if (id !== undefined) {
-      const todo = newTodo;
-      todo.id = id;
+  const addTodo = async (title) => {
+    const response = await api.addTodo(tableName, title);
+    if (response !== undefined) {
+      const todo = {
+        id: response.id,
+        title: response.fields.title,
+        createdTime: response.createdTime,
+      };
       setTodoList([...todoList, todo]);
     }
   };

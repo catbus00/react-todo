@@ -11,16 +11,9 @@ function AddTodoForm({ onAddTodo }) {
   };
   function handleAddTodo(event) {
     event.preventDefault();
-    const newTodo = {
-      title: todoTitle,
-      id: '',
-      createdTime: new Date().toISOString(),
-    };
-
-    event.preventDefault();
 
     setTodoTitle('');
-    onAddTodo(newTodo);
+    onAddTodo(todoTitle);
   }
 
   return (
@@ -34,7 +27,7 @@ function AddTodoForm({ onAddTodo }) {
         >
           Title
         </InputWithLabel>
-        <button type="submit">Add</button>
+        <button type="submit" disabled={todoTitle === ''}>Add</button>
       </div>
     </form>
   );
