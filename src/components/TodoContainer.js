@@ -4,24 +4,23 @@ import AddTodoForm from './AddTodoForm';
 import TodoListToggle from './TodoListToggle';
 import api from './Api';
 import style from './App.css';
+import PropTypes from 'prop-types';
 
-function TodoContainer() {
+const TodoContainer = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [checkedState, setCheckedState] = useState({});
   const [isAscending, setIsAscending] = useState(true);
 
-  const baseUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?`;
-
   const fetchAndSortTodos = useCallback(async () => {
     const sortField = 'title'; 
     const sortOptions = `sort[0][field]=${sortField}&sort[0][direction]=asc`;
-    const url = `${baseUrl}&${sortOptions}`;
-    const sortedTodos = await api.fetchAndSortTodos(url);
+
+    const sortedTodos = await api.fetchAndSortTodos(tableName, sortOptions);
 
     setTodoList(sortedTodos);
     setIsLoading(false);
-  }, [baseUrl]);
+  }, [tableName]);
 
   useEffect(() => {
     fetchAndSortTodos();
@@ -42,14 +41,14 @@ function TodoContainer() {
   };
 
   const removeTodo = async (id) => {
-    const response = await api.removeTodo(id);
+    const response = await api.removeTodo(tableName, id);
     if (response === id) {
       setTodoList((prevTodoList) => prevTodoList.filter((todo) => todo.id !== id));
     }
   };
 
   const addTodo = async (newTodo) => {
-    const id = await api.addTodo(newTodo);
+    const id = await api.addTodo(tableName, newTodo);
     if (id !== undefined) {
       const todo = newTodo;
       todo.id = id;
@@ -87,5 +86,13 @@ function TodoContainer() {
     </div>
   );
 }
+
+TodoContainer.propTypes = {
+  tableName: PropTypes.string
+};
+
+TodoContainer.defaultProps = {
+  tableName: 'Default'
+};
 
 export default TodoContainer;

@@ -1,12 +1,16 @@
-const fetchAndSortTodos = async () => {
+const url = table => `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${table}`;
+
+const fetchAndSortTodos = async (table, sortOptions = undefined) => {
   const options = {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
     },
   };
-  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
-  const response = await fetch(url, options);
+  const endpoint = sortOptions
+  ? `${url(table)}?${sortOptions}`
+  : url(table);
+  const response = await fetch(endpoint, options);
   if (!response.ok) {
     const message = `Error: ${response.status}`;
     throw new Error(message);
@@ -31,7 +35,7 @@ const fetchAndSortTodos = async () => {
   return sortedTodos;
 };
 
-const postTodo = async (todo) => {
+const postTodo = async (table, todo) => {
   const newTodo = {
     fields: {
       title: todo.title,
@@ -47,10 +51,9 @@ const postTodo = async (todo) => {
     body: JSON.stringify(newTodo),
   };
 
-  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
-
   try {
-    const response = await fetch(url, options);
+    const endpoint = url(table);
+    const response = await fetch(endpoint, options);
     if (!response.ok) {
       const message = `Error has occurred: ${response.status}`;
       throw new Error(message);
@@ -64,8 +67,8 @@ const postTodo = async (todo) => {
   }
 };
 
-const removeTodo = async (id) => {
-  const deleteUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/${id}`;
+const removeTodo = async (table, id) => {
+  const deleteUrl = `${url(table)}/${id}`;
   const deleteOptions = {
     method: 'DELETE',
     headers: {
@@ -84,8 +87,8 @@ const removeTodo = async (id) => {
   }
 };
 
-const addTodo = async (newTodo) => {
-  const dataResponse = await postTodo(newTodo);
+const addTodo = async (table, newTodo) => {
+  const dataResponse = await postTodo(table, newTodo);
   if (dataResponse) {
     return dataResponse.id;
   }
@@ -93,7 +96,11 @@ const addTodo = async (newTodo) => {
 };
 
 const api = {
-  fetchAndSortTodos, postTodo, removeTodo, addTodo,
+  fetchAndSortTodos,
+  postTodo,
+  removeTodo,
+  addTodo,
+  url,
 };
 
 export default api;
