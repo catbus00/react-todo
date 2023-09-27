@@ -15,14 +15,13 @@ function TodoContainer() {
 
   const fetchAndSortTodos = useCallback(async () => {
     const sortField = 'title'; 
-    const sortDirection = isAscending ? 'asc' : 'desc';
-    const sortOptions = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
+    const sortOptions = `sort[0][field]=${sortField}&sort[0][direction]=asc`;
     const url = `${baseUrl}&${sortOptions}`;
     const sortedTodos = await api.fetchAndSortTodos(url);
 
     setTodoList(sortedTodos);
     setIsLoading(false);
-  }, [isAscending, baseUrl]);
+  }, [baseUrl]);
 
   useEffect(() => {
     fetchAndSortTodos();
