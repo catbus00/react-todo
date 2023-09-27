@@ -2,16 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
 
-function TodoList({
+const TodoList = ({
   todoList, onRemoveTodo, isChecked, handleChange,
-}) {
-
-  TodoList.propTypes = {
-    todoList: PropTypes.array.isRequired,
-    onRemoveTodo: PropTypes.func.isRequired,
-    isChecked: PropTypes.object.isRequired,
-    handleChange: PropTypes.func.isRequired,
-  };
+}) => {
   
   return (
     <ul>
@@ -27,5 +20,12 @@ function TodoList({
     </ul>
   );
 }
+
+TodoList.propTypes = {
+  todoList: PropTypes.array.isRequired,
+  onRemoveTodo: PropTypes.func.isRequired,
+  isChecked: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default TodoList;

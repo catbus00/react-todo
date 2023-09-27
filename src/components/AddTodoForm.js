@@ -28,8 +28,8 @@ function AddTodoForm({ onAddTodo }) {
       <div className="input-container">
         <InputWithLabel
           id="todoTitle"
-          onInputChange={(event) => handleTitleChange(event)}
-          value={todoTitle}
+          handleTitleChange={(event) => handleTitleChange(event)}
+          todoTitle={todoTitle}
           isFocused
         >
           Title
