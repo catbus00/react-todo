@@ -68,7 +68,7 @@ const TodoContainer = ({ tableName }) => {
 
   return (
     <div className={style.ListItem}>
-      <h1><b>TASK LIST</b></h1>
+      <h1><b>{tableName}</b></h1>
       {isLoading ? (
         <p>Loading...</p>
       ) : (

@@ -23,7 +23,7 @@ function TodoListItem({
   return (
     <ul>
       <li>
-        <div className="item-container">
+        <div>
           <input
             type="checkbox"
             checked={isChecked}
