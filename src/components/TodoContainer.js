@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const TodoContainer = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [checkedState, setCheckedState] = useState({});
+  const [isChecked, setIsChecked] = useState({});
   const [isAscending, setIsAscending] = useState(true);
 
   const fetchAndSortTodos = useCallback(async () => {
@@ -27,7 +27,7 @@ const TodoContainer = ({ tableName }) => {
   }, [fetchAndSortTodos]);
 
   const toggleSortOrder = () => {
-    setIsAscending(!isAscending);
+    setIsAscending((prevIsAscending) => !prevIsAscending);
 
     const sortedTodos = [...todoList].sort((a, b) => {
       if (isAscending) {
@@ -49,18 +49,19 @@ const TodoContainer = ({ tableName }) => {
 
   const addTodo = async (title) => {
     const response = await api.addTodo(tableName, title);
-    if (response !== undefined) {
+    if (response) {
       const todo = {
         id: response.id,
         title: response.fields.title,
         createdTime: response.createdTime,
       };
-      setTodoList([...todoList, todo]);
+      setTodoList((prevTodoList) => [...prevTodoList, todo]);
+
     }
   };
 
   const handleChange = (id) => {
-    setCheckedState((prevState) => ({
+    setIsChecked((prevState) => ({
       ...prevState,
       [id]: !prevState[id],
     }));
@@ -80,7 +81,7 @@ const TodoContainer = ({ tableName }) => {
           <TodoList
             todoList={todoList}
             onRemoveTodo={removeTodo}
-            isChecked={checkedState}
+            isChecked={isChecked}
             handleChange={handleChange}
           />
           <AddTodoForm onAddTodo={addTodo} />

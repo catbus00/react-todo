@@ -1,6 +1,6 @@
 const url = table => `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${table}`;
 
-const fetchAndSortTodos = async (table, sortOptions = undefined) => {
+const fetchAndSortTodos = async (table, sortOptions) => {
   const options = {
     method: 'GET',
     headers: {

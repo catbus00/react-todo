@@ -12,13 +12,6 @@ function TodoListItem({
   const handleCheckboxChange = () => {
     handleChange(todo.id);
   };
-
-  TodoListItem.propTypes = {
-    todo: PropTypes.object.isRequired,
-    onRemoveTodo: PropTypes.func.isRequired,
-    isChecked: PropTypes.bool.isRequired,
-    handleChange: PropTypes.func.isRequired,
-  };
   
   return (
     <ul>
@@ -42,5 +35,12 @@ function TodoListItem({
     </ul>
   );
 }
+
+TodoListItem.propTypes = {
+  todo: PropTypes.object.isRequired,
+  onRemoveTodo: PropTypes.func.isRequired,
+  isChecked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default TodoListItem;

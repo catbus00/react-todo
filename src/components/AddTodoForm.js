@@ -12,8 +12,8 @@ function AddTodoForm({ onAddTodo }) {
   function handleAddTodo(event) {
     event.preventDefault();
 
-    setTodoTitle('');
     onAddTodo(todoTitle);
+    setTodoTitle('');
   }
 
   return (
@@ -27,14 +27,14 @@ function AddTodoForm({ onAddTodo }) {
         >
           Title
         </InputWithLabel>
-        <button type="submit" disabled={todoTitle === ''}>Add</button>
+        <button type="submit" disabled={!todoTitle}>Add</button>
       </div>
     </form>
   );
 }
 
 AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func.isRequired,
+  onAddTodo: PropTypes.func,
 };
 
 export default AddTodoForm;
