@@ -5,6 +5,7 @@ import TodoListToggle from './TodoListToggle';
 import api from './Api';
 import style from './App.css';
 import PropTypes from 'prop-types';
+import TodoNavigation from './TodoNavigation';
 
 const TodoContainer = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
@@ -69,15 +70,12 @@ const TodoContainer = ({ tableName }) => {
 
   return (
     <div className={style.ListItem}>
-      <h1><b>TASK LIST</b></h1>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <>
-
+          <TodoNavigation />
           <TodoListToggle updateSortOrder={toggleSortOrder} />
-
-
           <TodoList
             todoList={todoList}
             onRemoveTodo={removeTodo}

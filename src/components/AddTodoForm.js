@@ -1,6 +1,8 @@
 import React, { useState } from 'react'; 
 import PropTypes from 'prop-types';
+import style from './AddTodoForm.module.css'
 import InputWithLabel from './InputWithLabel';
+import addIcon from '../assets/add.svg';
 
 function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
@@ -9,6 +11,7 @@ function AddTodoForm({ onAddTodo }) {
     const newTodoTitle = event.target.value;
     setTodoTitle(newTodoTitle);
   };
+
   function handleAddTodo(event) {
     event.preventDefault();
 
@@ -25,10 +28,31 @@ function AddTodoForm({ onAddTodo }) {
           todoTitle={todoTitle}
           isFocused
         >
-          Title
         </InputWithLabel>
-        <button type="submit" disabled={!todoTitle}>Add</button>
+        <button 
+          type="submit" 
+          disabled={!todoTitle}
+          className="addButton"
+        > 
+          <div className="svg-container">
+        <svg
+          width="64px"
+          height="64px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="your-svg-class"
+        >
+          <use xlinkHref="#myMask" fill="pink" />
+        </svg>
+        <img
+          src={addIcon}
+          className={style.addButton}
+          alt='Add Todo Icon'
+        />
       </div>
+    </button>
+    </div>
     </form>
   );
 }

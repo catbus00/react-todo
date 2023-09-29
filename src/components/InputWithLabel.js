@@ -30,6 +30,6 @@ const InputWithLabel = ({
 InputWithLabel.propTypes = {
     todoTitle: PropTypes.string.isRequired,
     handleTitleChange: PropTypes.func.isRequired,
-    children: PropTypes.string.isRequired,
+    children: PropTypes.array.isRequired,
 }
 export default InputWithLabel;

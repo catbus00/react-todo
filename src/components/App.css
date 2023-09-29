@@ -98,7 +98,8 @@ li {
 /* change input box */
 
 .input-container button {
-  background-color: pink;
+  background-color: none;
+  background: none;
 }
 
 /* change default button settings */

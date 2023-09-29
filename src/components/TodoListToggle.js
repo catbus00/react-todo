@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; 
+import style from './TodoListToggle.module.css'
 
 function TodoListToggle({ updateSortOrder }) {
   const [titleSortOrder, setTitleSortOrder] = useState('asc');
@@ -16,7 +17,7 @@ function TodoListToggle({ updateSortOrder }) {
 
   return (
     <div className="dropdown">
-      <button className="dropbutton" onClick={toggleSortOrder}>
+      <button className={style['button']} onClick={toggleSortOrder}>
         Sort by Title: {titleSortOrder === 'asc' ? 'Ascending' : 'Descending'}
       </button>
     </div>

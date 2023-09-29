@@ -1,0 +1,16 @@
+/* navigation container */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+/* hamburger menu area */
+.left-column {
+    flex-grow: 1; 
+  }
+
+/* user profile area */
+.right-column {
+  }
+  
