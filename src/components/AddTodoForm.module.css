@@ -1,29 +1,9 @@
-
-/* remove default spacing from all margins */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul {
-  margin: 0;
-}
-
-li {
-  display: flex;
-  align-items: left;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
 /* make input box flex box*/
 
 .inputContainer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 /* adjust input box */
@@ -34,7 +14,7 @@ li {
   font-family: 'helvetica';
   color: black;
   font-size: 13px;
-  flex-grow: 1;
+  flex-grow: 100;
   outline: none;
   box-shadow: none;
   border: 1px solid #ccc;
@@ -51,30 +31,24 @@ li {
 svg.addButton {
   fill: pink;
   transition: fill 0.2s ease-in-out;
-}
-.inputContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: 150px;
 }
 
 .addButtonContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background: green; */
 }
 
 .inputForm {
-  border-radius: 23.5px;
-  padding: 10px;
+  padding: 5px;
   font-family: 'helvetica';
   color: black;
   font-size: 13px;
   flex-grow: 1;
   outline: none;
   box-shadow: none;
-  border: 1px solid #ccc;
+  border: none;
   background-color: #fff;
 }
 

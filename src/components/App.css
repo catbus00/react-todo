@@ -3,8 +3,8 @@
 /* global css body */
 body {
   font-family: 'helvetica';
-  color: pink;
-  font-size: 15px;
+  color: rgb(228, 111, 130);
+  font-size: 17px;
   margin: 50px;
   background-color: cream;
 }
@@ -35,21 +35,21 @@ ul {
 /* mobile */
 @media (max-width: 767px) {
   body {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
 /* tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
   body {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 /* desktop */
 @media (min-width: 1024px) {
   body {
-    font-size: 13px;
+    font-size: 17px;
   }
 }
 

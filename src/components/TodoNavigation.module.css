@@ -12,9 +12,10 @@
 
 /* hamburger menu area */
 .leftColumn {
-  flex-grow: 1;
+  flex-grow: 15;
 }
 
 /* user profile area */
 .rightColumn {
+  flex-grow: 1;
 }
