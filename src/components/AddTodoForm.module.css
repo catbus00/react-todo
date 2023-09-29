@@ -1,23 +1,22 @@
-.addIcon {
-    fill: pink; /* Default color */
-  }
-  
-  .addButton {
-    background: none;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: transparent;
-    -webkit-transform: none;
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .addButton:disabled + .svg-container .addIcon {
-    fill: grey; /* Change the fill color when the button is disabled */
-  }
-  
-  .addButton:hover + .svg-container .addIcon { 
-    fill: grey; /* Change the fill color on hover */
-  }
-  
+svg.addButton {
+  fill: pink;
+  transition: fill 0.2s ease-in-out;
+  width: 64px;
+  height: 64px;
+}
+
+
+.addButton {
+  background: none;
+  border: none;
+  padding: 20px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  -webkit-transform: none;
+  transform: none;
+  box-shadow: none;
+}
+
+svg.addButton:hover {
+  fill: rgb(244, 117, 138);
+}
