@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  padding-top: 50px;
 }
 
 /* adjust input box */
@@ -29,7 +30,7 @@
 }
 
 svg.addButton {
-  fill: pink;
+  fill: rgb(255, 133, 153);
   transition: fill 0.2s ease-in-out;
   height: 150px;
 }
@@ -52,6 +53,13 @@ svg.addButton {
   background-color: #fff;
 }
 
+@media screen and (max-width: 767px) {
+  .inputContainer {
+    padding-left: 10px;
+    max-width: 50%;
+  }
+}
+
 svg.addButton {
   background: none;
   border: none;
@@ -64,7 +72,7 @@ svg.addButton {
 }
 
 svg.addButton:hover {
-  fill: #cc1970;
+  fill: rgb(212, 113, 129);
 }
 
 svg.addButton:disabled {

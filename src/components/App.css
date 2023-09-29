@@ -1,14 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
+/* global container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 30px;
+  padding: 100px;
+}
+
 /* global css body */
+
 body {
   font-family: 'helvetica';
   color: rgb(228, 111, 130);
   font-size: 17px;
   margin: 50px;
-  background-color: cream;
+  background: linear-gradient(-45deg, #ffd6ea, #ffffff, #f6b6c6, rgb(228, 111, 130));
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
 }
 
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 /* change color, font, weight and add padding global elements */
 p,
 h1,
@@ -35,7 +62,9 @@ ul {
 /* mobile */
 @media (max-width: 767px) {
   body {
+    padding: 5px;
     font-size: 12px;
+    overflow-x: hidden;
   }
 }
 
@@ -43,6 +72,8 @@ ul {
 @media (min-width: 768px) and (max-width: 1023px) {
   body {
     font-size: 14px;
+    padding: 50px;
+    overflow-x: hidden;
   }
 }
 
@@ -50,6 +81,8 @@ ul {
 @media (min-width: 1024px) {
   body {
     font-size: 17px;
+    padding: 120px;
+    overflow-x: hidden;
   }
 }
 
