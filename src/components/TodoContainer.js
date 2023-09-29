@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import TodoList from './TodoList';
-import AddTodoForm from './AddTodoForm';
-import TodoListToggle from './TodoListToggle';
-import api from './Api';
-import style from './App.css';
-import PropTypes from 'prop-types';
-import TodoNavigation from './TodoNavigation';
+import React, { useState, useEffect, useCallback } from "react";
+import TodoList from "./TodoList";
+import AddTodoForm from "./AddTodoForm";
+import TodoListToggle from "./TodoListToggle";
+import api from "./Api";
+import style from "./App.css";
+import PropTypes from "prop-types";
+import TodoNavigation from "./TodoNavigation";
 
 const TodoContainer = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
@@ -14,7 +14,7 @@ const TodoContainer = ({ tableName }) => {
   const [isAscending, setIsAscending] = useState(true);
 
   const fetchAndSortTodos = useCallback(async () => {
-    const sortField = 'title'; 
+    const sortField = "title";
     const sortOptions = `sort[0][field]=${sortField}&sort[0][direction]=asc`;
 
     const sortedTodos = await api.fetchAndSortTodos(tableName, sortOptions);
@@ -44,7 +44,9 @@ const TodoContainer = ({ tableName }) => {
   const removeTodo = async (id) => {
     const response = await api.removeTodo(tableName, id);
     if (response === id) {
-      setTodoList((prevTodoList) => prevTodoList.filter((todo) => todo.id !== id));
+      setTodoList((prevTodoList) =>
+        prevTodoList.filter((todo) => todo.id !== id),
+      );
     }
   };
 
@@ -57,7 +59,6 @@ const TodoContainer = ({ tableName }) => {
         createdTime: response.createdTime,
       };
       setTodoList((prevTodoList) => [...prevTodoList, todo]);
-
     }
   };
 
@@ -87,14 +88,14 @@ const TodoContainer = ({ tableName }) => {
       )}
     </div>
   );
-}
+};
 
 TodoContainer.propTypes = {
-  tableName: PropTypes.string
+  tableName: PropTypes.string,
 };
 
 TodoContainer.defaultProps = {
-  tableName: 'Default'
+  tableName: "Default",
 };
 
 export default TodoContainer;

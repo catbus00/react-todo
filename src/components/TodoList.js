@@ -1,27 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import TodoListItem from './TodoListItem';
+import React from "react";
+import PropTypes from "prop-types";
+import TodoListItem from "./TodoListItem";
 
-const TodoList = ({
-  todoList, onRemoveTodo, handleChange,
-}) => {
-  
+const TodoList = ({ todoList, onRemoveTodo, handleChange }) => {
   return (
     <ul>
-        {todoList.map((todo) => {
-        const { id } = todo;  
-      
-        return <TodoListItem
-          key={id}
-          todo={todo}
-          onRemoveTodo={onRemoveTodo}
-          isChecked={false} 
-          handleChange={() => handleChange(id)}
-        />
+      {todoList.map((todo) => {
+        const { id } = todo;
+
+        return (
+          <TodoListItem
+            key={id}
+            todo={todo}
+            onRemoveTodo={onRemoveTodo}
+            isChecked={false}
+            handleChange={() => handleChange(id)}
+          />
+        );
       })}
     </ul>
   );
-}
+};
 
 TodoList.propTypes = {
   todoList: PropTypes.arrayOf(PropTypes.object).isRequired,
