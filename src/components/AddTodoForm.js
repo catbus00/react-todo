@@ -35,21 +35,21 @@ function AddTodoForm({ onAddTodo }) {
           className="addButton"
         > 
           <div className="svg-container">
-        <svg
-          width="64px"
-          height="64px"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="your-svg-class"
-        >
-          <use xlinkHref="#myMask" fill="pink" />
-        </svg>
-        <img
-          src={addIcon}
-          className={style.addButton}
-          alt='Add Todo Icon'
-        />
+          <svg
+            width="64px"
+            height="64px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="your-svg-class"
+          >
+            <use xlinkHref="#myMask" fill="pink" />
+          </svg>
+          <img
+            src={addIcon}
+            className={style.addButton}
+            alt='Add Todo Icon'
+          />
       </div>
     </button>
     </div>
