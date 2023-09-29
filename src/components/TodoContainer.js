@@ -10,7 +10,7 @@ import TodoNavigation from "./TodoNavigation";
 const TodoContainer = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isChecked, setIsChecked] = useState({});
+  const [isChecked, setIsChecked] = useState([]);
   const [isAscending, setIsAscending] = useState(true);
 
   const fetchAndSortTodos = useCallback(async () => {
