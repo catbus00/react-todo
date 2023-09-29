@@ -20,7 +20,7 @@ function AddTodoForm({ onAddTodo }) {
 
   return (
     <form onSubmit={handleAddTodo}>
-      <div className="input-container">
+      <div className="inputContainer">
         <InputWithLabel
           id="todoTitle"
           handleTitleChange={(event) => handleTitleChange(event)}

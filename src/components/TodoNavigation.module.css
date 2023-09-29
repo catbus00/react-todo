@@ -1,16 +1,22 @@
 /* navigation container */
-.container {
+
+.todoNavigationLink {
+  text-decoration: none;
+}
+
+.navigationContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
 /* hamburger menu area */
-.left-column {
+.leftColumn {
     flex-grow: 1; 
   }
 
 /* user profile area */
-.right-column {
+.rightColumn {
+
   }
   

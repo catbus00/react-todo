@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './TodoListItem.css'
+import style from './TodoListItem.module.css'
 
 function TodoListItem({
   todo, onRemoveTodo, isChecked, handleChange,
@@ -14,25 +14,29 @@ function TodoListItem({
   };
   
   return (
-    <ul>
-      <li>
-        <div>
+    <li>
+    <div className={style.todoListThreeColumn}>
+        <div className={style.todoListColumn1}>
           <input
             type="checkbox"
             checked={isChecked}
             onChange={handleCheckboxChange}
           />
+        </div>
+        <div className={style.todoListColumn2}>
           {todo.title}
         </div>
-        <button
-          type="submit"
-          className={style.todoButton}
-          onClick={onRemoveClick}
-        >
-          Remove
-        </button>
-      </li>
-    </ul>
+        <div className={style.todoListColumn3}>
+          <button
+            type="submit"
+            className={style.todoListItemButton}
+            onClick={onRemoveClick}
+          >
+            Remove
+          </button>
+        </div>
+    </div>  
+    </li>
   );
 }
 
