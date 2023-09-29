@@ -27,6 +27,7 @@ function AddTodoForm({ onAddTodo }) {
           todoTitle={todoTitle}
           isFocused
         >
+          Add Task:
         </InputWithLabel>
         <button 
           type="submit" 

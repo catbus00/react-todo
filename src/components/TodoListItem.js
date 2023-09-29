@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
+import style from './TodoListItem.css'
 
 function TodoListItem({
   todo, onRemoveTodo, isChecked, handleChange,
@@ -16,7 +16,7 @@ function TodoListItem({
   return (
     <ul>
       <li>
-        <div className="item-container">
+        <div>
           <input
             type="checkbox"
             checked={isChecked}
@@ -26,7 +26,7 @@ function TodoListItem({
         </div>
         <button
           type="submit"
-          className="custom-button"
+          className={style.todoButton}
           onClick={onRemoveClick}
         >
           Remove
