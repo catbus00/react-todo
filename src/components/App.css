@@ -17,13 +17,17 @@ body {
   color: rgb(228, 111, 130);
   font-size: 17px;
   margin: 50px;
-  background: linear-gradient(-45deg, #ffd6ea, #ffffff, #f6b6c6, rgb(228, 111, 130));
+  background: linear-gradient(
+    -45deg,
+    #ffd6ea,
+    #ffffff,
+    #f6b6c6,
+    rgb(228, 111, 130)
+  );
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
 }
-
-
 
 @keyframes gradient {
   0% {

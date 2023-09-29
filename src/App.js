@@ -10,7 +10,7 @@ const table = process.env.REACT_APP_TABLE_NAME;
 
 function App() {
   return (
-    <div class="container">
+    <div className="container">
       <BrowserRouter>
         <Routes>
           <Route path="/todo" element={<AddTodoForm />} />
