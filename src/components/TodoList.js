@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TodoListItem from "./TodoListItem";
 
-const TodoList = ({ todoList, onRemoveTodo, handleChange }) => {
+const TodoList = ({ todoList, onRemoveTodo, handleChange, isChecked }) => {
   return (
     <ul>
       {todoList.map((todo) => {
@@ -13,7 +13,7 @@ const TodoList = ({ todoList, onRemoveTodo, handleChange }) => {
             key={id}
             todo={todo}
             onRemoveTodo={onRemoveTodo}
-            isChecked={false}
+            isChecked={todo.true}
             handleChange={() => handleChange(id)}
           />
         );
