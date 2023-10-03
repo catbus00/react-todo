@@ -14,8 +14,7 @@ const TodoContainer = ({ tableName }) => {
   const [isAscending, setIsAscending] = useState(true);
 
   const fetchAndSortTodos = useCallback(async () => {
-    const sortField = "title";
-    const sortOptions = `sort[0][field]=${sortField}&sort[0][direction]=asc`;
+    const sortOptions = `?sort[0][field]=title&sort[0][direction]=asc`;
 
     const sortedTodos = await api.fetchAndSortTodos(tableName, sortOptions);
 
