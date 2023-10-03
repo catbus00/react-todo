@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./TodoListItem.module.css";
 
-function TodoListItem({ todo, onRemoveTodo, isChecked, handleChange }) {
+function TodoListItem({ todo, onRemoveTodo, idChecked, handleChange }) {
   const onRemoveClick = () => {
     onRemoveTodo(todo.id);
   };
 
   const handleCheckboxChange = () => {
-    handleChange(todo.id);
+    let done = document.getElementById(`checkbox-${todo.id}`).checked;
+    handleChange(done);
   };
 
   return (
@@ -18,7 +19,7 @@ function TodoListItem({ todo, onRemoveTodo, isChecked, handleChange }) {
           <input
             type="checkbox"
             id={`checkbox-${todo.id}`}
-            checked={isChecked}
+            checked={idChecked === todo.id}
             onChange={handleCheckboxChange}
           />
         </div>
@@ -40,7 +41,7 @@ function TodoListItem({ todo, onRemoveTodo, isChecked, handleChange }) {
 TodoListItem.propTypes = {
   todo: PropTypes.object.isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
-  isChecked: PropTypes.bool,
+  idChecked: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

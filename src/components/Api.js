@@ -19,7 +19,7 @@ const fetchAndSortTodos = async (table, sortOptions) => {
     title: todo.fields.title,
     id: todo.id,
     createdTime: new Date(todo.createdTime),
-    isChecked: todo.done,
+    isChecked: todo.fields.done ?? false,
   }));
 
   const sortedTodos = sortOptions !== undefined
@@ -86,11 +86,32 @@ const addTodo = async (table, title) => {
   return dataResponse;
 };
 
+const checkTodo = async (table, id, done) => {
+  const options = {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+    },
+    body: JSON.stringify({ id, fields: { done } }),
+  };
+  try {
+    const response = await fetch(url(table), options);
+    if (!response.ok) {
+      throw new Error(`Error handling checked status on todo: ${response.status}`);
+    }
+    return id;
+  } catch (error) {
+    console.log("Patch checked status Error:", error.message);
+    return undefined;
+  }
+}; 
+
 const api = {
   fetchAndSortTodos,
   postTodo,
   removeTodo,
   addTodo,
+  checkTodo,
   url,
 };
 
