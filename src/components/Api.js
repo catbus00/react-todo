@@ -22,15 +22,17 @@ const fetchAndSortTodos = async (table, sortOptions) => {
     isChecked: todo.done,
   }));
 
-  const sortedTodos = todos.sort((a, b) => {
+  const sortedTodos = sortOptions !== undefined
+  ? todos.sort((a, b) => {
     if (a.createdTime > b.createdTime) {
       return 1;
-    }
+    } 
     if (a.createdTime < b.createdTime) {
       return -1;
     }
     return 0;
-  });
+  })
+  : todos;
 
   return sortedTodos;
 };
