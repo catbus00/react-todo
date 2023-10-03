@@ -20,7 +20,7 @@ function TodoListToggle({ updateSortOrder }) {
   return (
     <div className="toggleContainer">
       <button className={style.toggleButton} onClick={toggleSortOrder}>
-        Sort{" "}
+        Sort
         {
           <img src={titleSortOrder ? sortup : sortdown} alt={titleSortOrder ? "Sort Up" : "Sort down"} />
         }
