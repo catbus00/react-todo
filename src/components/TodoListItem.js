@@ -17,6 +17,7 @@ function TodoListItem({ todo, onRemoveTodo, isChecked, handleChange }) {
         <div className={style.todoListColumn1}>
           <input
             type="checkbox"
+            id={`checkbox-${todo.id}`}
             checked={isChecked}
             onChange={handleCheckboxChange}
           />
