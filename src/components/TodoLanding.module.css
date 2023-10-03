@@ -53,3 +53,7 @@
 .todoLandingButton:hover {
   background: rgb(201, 97, 115);
 }
+
+.todoLandingButton:active {
+  background: rgb(236, 74, 101);
+}

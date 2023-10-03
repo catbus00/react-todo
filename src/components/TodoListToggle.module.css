@@ -34,3 +34,7 @@
 .toggleButton:hover {
   background: rgb(190, 91, 107);
 }
+
+.toggleButton:active {
+  background: rgb(236, 74, 101);
+}

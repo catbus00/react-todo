@@ -91,6 +91,10 @@ svg.addButton:hover {
   fill: rgb(212, 113, 129);
 }
 
+svg.addButton:active {
+  fill: rgb(236, 74, 101);
+}
+
 svg.addButton:disabled {
   fill: grey;
   pointer-events: none;
