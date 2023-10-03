@@ -5,10 +5,10 @@ import sortup from "../assets/sortup.svg";
 import sortdown from "../assets/sortdown.svg";
 
 function TodoListToggle({ updateSortOrder }) {
-  const [titleSortOrder, setTitleSortOrder] = useState("asc");
+  const [titleSortOrder, setTitleSortOrder] = useState(true);
 
   const toggleSortOrder = () => {
-    const newSortOrder = titleSortOrder === "asc" ? "desc" : "asc";
+    const newSortOrder = !titleSortOrder;
     setTitleSortOrder(newSortOrder);
     updateSortOrder(newSortOrder);
   };
@@ -21,11 +21,9 @@ function TodoListToggle({ updateSortOrder }) {
     <div className="toggleContainer">
       <button className={style.toggleButton} onClick={toggleSortOrder}>
         Sort{" "}
-        {titleSortOrder === "asc" ? (
-          <img src={sortup} alt="Sort Up" />
-        ) : (
-          <img src={sortdown} alt="Sort Down" />
-        )}
+        {
+          <img src={titleSortOrder ? sortup : sortdown} alt={titleSortOrder ? "Sort Up" : "Sort down"} />
+        }
       </button>
     </div>
   );
