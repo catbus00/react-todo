@@ -8,7 +8,7 @@ const fetchAndSortTodos = async (table, sortOptions) => {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
     },
   };
-  const endpoint = `${url(table)}${sortOptions}`;
+  const endpoint = sortOptions? `${url(table)}${sortOptions}` : "";
   const response = await fetch(endpoint, options);
   if (!response.ok) {
     const message = `Error: ${response.status}`;
