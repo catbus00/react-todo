@@ -18,20 +18,12 @@ const fetchAndSortTodos = async (table, sortOptions) => {
   const todos = data.records.map((todo) => ({
     title: todo.fields.title,
     id: todo.id,
-    createdTime: todo.createdTime,
+    createdTime: new Date(todo.createdTime),
     isChecked: todo.done,
   }));
 
   const sortedTodos = sortOptions !== undefined
-  ? todos.sort((a, b) => {
-    if (a.createdTime > b.createdTime) {
-      return 1;
-    } 
-    if (a.createdTime < b.createdTime) {
-      return -1;
-    }
-    return 0;
-  })
+  ? todos.sort((a, b) => a.createdTime - b.createdTime)
   : todos;
 
   return sortedTodos;
