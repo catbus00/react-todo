@@ -63,7 +63,6 @@ svg.addButton {
 svg.addButton {
   background: none;
   border: none;
-  padding: 20px;
   cursor: pointer;
   background-color: transparent;
   -webkit-transform: none;
