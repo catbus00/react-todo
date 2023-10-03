@@ -21,14 +21,19 @@ function AddTodoForm({ onAddTodo }) {
   return (
     <form onSubmit={handleAddTodo}>
       <div className={style.inputContainer}>
-        <InputWithLabel
-          id="todoTitle"
-          handleTitleChange={(event) => handleTitleChange(event)}
-          todoTitle={todoTitle}
-          isFocused
-        >
-        NEW TASK
-        </InputWithLabel>
+        <div className={style.inputColumn1}>
+          NEW TASK
+        </div>
+        <div className={style.inputColumn2}>
+          <InputWithLabel
+            id="todoTitle"
+            handleTitleChange={(event) => handleTitleChange(event)}
+            todoTitle={todoTitle}
+            isFocused
+          >
+          </InputWithLabel>
+        </div>
+        <div className={style.inputColumn3}>
         <button
           type="submit"
           disabled={!todoTitle}
@@ -46,6 +51,7 @@ function AddTodoForm({ onAddTodo }) {
             />
           </svg>
           </button>
+          </div>
         </div>
     </form>
   );

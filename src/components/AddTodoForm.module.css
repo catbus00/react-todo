@@ -2,31 +2,47 @@
 
 .inputContainer {
   display: flex;
+  justify-content: center;
+  width: 100%;
   align-items: center;
-  gap: 5px;
-  padding-top: 50px;
+  flex-wrap: wrap;
+}
+
+.inputColumn1 {
+  flex: 2;
+}
+.inputColumn2 {
+  flex: 5;
+}
+.inputColumn3 {
+  flex: 2;
 }
 
 /* adjust input box */
 
-.inputContainer input {
+.inputColumn2 input {
   border-radius: 23.5px;
   padding: 10px;
   font-family: 'helvetica';
   color: black;
   font-size: 13px;
-  flex-grow: 100;
+  flex-grow: 1;
   outline: none;
   box-shadow: none;
   border: 1px solid #ccc;
   background-color: #fff;
+  width: 90%;
 }
 
 /* change input box */
 
-.inputContainer button {
+.inputColumn3 button {
   background-color: none;
   background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 svg.addButton {
@@ -68,6 +84,7 @@ svg.addButton {
   -webkit-transform: none;
   transform: none;
   box-shadow: none;
+  height: 70px;
 }
 
 svg.addButton:hover {
