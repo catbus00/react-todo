@@ -49,6 +49,10 @@
   background: rgb(209, 157, 166);
 }
 
+.todoListItemButton:active {
+  background: rgb(236, 74, 101);
+}
+
 .todoListItemButton:hover {
   -webkit-animation-name: hvr-wobble-horizontal;
   animation-name: hvr-wobble-horizontal;
