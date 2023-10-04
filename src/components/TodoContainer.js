@@ -14,7 +14,7 @@ const TodoContainer = ({ tableName }) => {
   const [isAscending, setIsAscending] = useState(true);
 
   const checkTodo = useCallback(async (id, done) => {
-    await api.checkTodo(id, done);
+    await api.checkTodo(tableName, id, done);
   });
   const fetchAndSortTodos = useCallback(async () => {
     const sortOptions = `?sort[0][field]=title&sort[0][direction]=asc`;
@@ -30,7 +30,7 @@ const TodoContainer = ({ tableName }) => {
 
   useEffect(() => {
     fetchAndSortTodos();
-  }, [fetchAndSortTodos, checkTodo]);
+  }, [fetchAndSortTodos]);
 
   const toggleSortOrder = () => {
     setIsAscending((prevIsAscending) => !prevIsAscending);

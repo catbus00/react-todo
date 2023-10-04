@@ -87,15 +87,17 @@ const addTodo = async (table, title) => {
 };
 
 const checkTodo = async (table, id, done) => {
+  console.log(table, id, done)
+  const endpoint = `${url(table)}/${id}`;
   const options = {
     method: "PATCH",
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
     },
-    body: JSON.stringify({ id, fields: { done } }),
+    body: JSON.stringify({ fields: { done } }),
   };
   try {
-    const response = await fetch(url(table), options);
+    const response = await fetch(endpoint, options);
     if (!response.ok) {
       throw new Error(`Error handling checked status on todo: ${response.status}`);
     }
