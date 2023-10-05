@@ -88,10 +88,12 @@ const addTodo = async (table, title) => {
 
 const checkTodo = async (table, id, done) => {
   console.log(table, id, done)
+  
   const endpoint = `${url(table)}/${id}`;
   const options = {
     method: "PATCH",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
     },
     body: JSON.stringify({ fields: { done } }),
@@ -106,7 +108,7 @@ const checkTodo = async (table, id, done) => {
     console.log("Patch checked status Error:", error.message);
     return undefined;
   }
-}; 
+};
 
 const api = {
   fetchAndSortTodos,

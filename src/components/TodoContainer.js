@@ -18,7 +18,6 @@ const TodoContainer = ({ tableName }) => {
   });
   const fetchAndSortTodos = useCallback(async () => {
     const sortOptions = `?sort[0][field]=title&sort[0][direction]=asc`;
-
     const sortedTodos = await api.fetchAndSortTodos(tableName, sortOptions);
     const checkedTodos = sortedTodos.map(({id, isChecked}) => isChecked ? id : undefined);
     console.log(checkedTodos);
