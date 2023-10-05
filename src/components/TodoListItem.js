@@ -9,7 +9,7 @@ function TodoListItem({ todo, onRemoveTodo, idChecked, handleChange }) {
 
   const handleCheckboxChange = () => {
     let done = document.getElementById(`checkbox-${todo.id}`).checked;
-    handleChange(done);
+    handleChange(todo.id, done);
   };
 
   return (

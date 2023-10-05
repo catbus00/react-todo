@@ -13,8 +13,8 @@ const TodoList = ({ todoList, onRemoveTodo, handleChange, areChecked }) => {
             key={id}
             todo={todo}
             onRemoveTodo={onRemoveTodo}
-            idChecked={areChecked[index]}
-            handleChange={(done) => handleChange(id, done)}
+            idChecked={areChecked[index] ?? false}
+            handleChange={(id, done) => handleChange(id, done)}
           />
         );
       })}

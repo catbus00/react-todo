@@ -10,21 +10,25 @@ import TodoNavigation from "./TodoNavigation";
 const TodoContainer = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [areChecked, setAreChecked] = useState([]);
   const [isAscending, setIsAscending] = useState(true);
 
   const checkTodo = useCallback(async (id, done) => {
-    await api.checkTodo(tableName, id, done);
-  });
+    const idx = todoList.findIndex(({ id: searched }) => searched === id);
+    const response = await api.checkTodo(tableName, id, done);
+    if (response) {
+      const list = [...todoList];
+      const todo = list[idx];
+      list[idx] = { title: todo.title, id, createdTime: todo.createdTime, isChecked: done };
+      setTodoList(list);
+  }
+  }, [tableName, todoList, setTodoList]);
   const fetchAndSortTodos = useCallback(async () => {
     const sortOptions = `?sort[0][field]=title&sort[0][direction]=asc`;
     const sortedTodos = await api.fetchAndSortTodos(tableName, sortOptions);
     const checkedTodos = sortedTodos.map(({id, isChecked}) => isChecked ? id : undefined);
     console.log(checkedTodos);
-
     setTodoList(sortedTodos);
     setIsLoading(false);
-    setAreChecked(checkedTodos);
   }, [tableName]);
 
   useEffect(() => {
@@ -86,7 +90,7 @@ const TodoContainer = ({ tableName }) => {
           <TodoList
             todoList={todoList}
             onRemoveTodo={removeTodo}
-            areChecked={areChecked}
+            areChecked={todoList.map(({id, isChecked}) => isChecked ? id : undefined)}
             handleChange={handleChange}
           />
           <AddTodoForm onAddTodo={addTodo} />
