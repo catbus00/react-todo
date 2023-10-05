@@ -71,11 +71,6 @@ const TodoContainer = ({ tableName }) => {
   };
 
   const handleChange = async (id, done) => {
-    // setAreChecked((prevState) => ({
-    //   ...prevState,
-    //   [id]: !prevState[id],
-    // }));
-    // make API call to update checked value for id
     await checkTodo(id, done);
   };
 

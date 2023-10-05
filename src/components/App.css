@@ -7,7 +7,7 @@
   margin: 0 auto;
   background-color: white;
   border-radius: 30px;
-  padding: 10px;
+  padding: 1px;
 }
 
 /* global css body */
@@ -66,18 +66,36 @@ ul {
 /* mobile */
 @media (max-width: 767px) {
   body {
-    padding: 5px;
+    padding: 0px;
+    margin: 5px; 
     font-size: 12px;
     overflow-x: hidden;
+    background: none;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 0px;
   }
 }
+
 
 /* tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
   body {
     font-size: 14px;
+    margin: 15px; 
     padding: 50px;
     overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 30px;
+    padding: 0px;
   }
 }
 
