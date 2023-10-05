@@ -41,7 +41,7 @@ function TodoListItem({ todo, onRemoveTodo, idChecked, handleChange }) {
 TodoListItem.propTypes = {
   todo: PropTypes.object.isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
-  idChecked: PropTypes.string.isRequired,
+  idChecked: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
 };
 

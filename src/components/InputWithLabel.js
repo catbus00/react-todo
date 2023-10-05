@@ -6,7 +6,6 @@ const InputWithLabel = ({
   todoTitle,
   type = "text",
   handleTitleChange,
-  children,
 }) => {
   const inputRef = useRef();
   useEffect(() => {
@@ -15,7 +14,6 @@ const InputWithLabel = ({
 
   return (
     <>
-      <label htmlFor={id}>{children}</label>
       <input
         ref={inputRef}
         id={id}
@@ -29,6 +27,5 @@ const InputWithLabel = ({
 InputWithLabel.propTypes = {
   todoTitle: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
-  children: PropTypes.string.isRequired,
 };
 export default InputWithLabel;

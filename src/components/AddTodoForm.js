@@ -30,8 +30,7 @@ function AddTodoForm({ onAddTodo }) {
             handleTitleChange={(event) => handleTitleChange(event)}
             todoTitle={todoTitle}
             isFocused
-          >
-          </InputWithLabel>
+          />
         </div>
         <div className={style.inputColumn3}>
         <button
@@ -58,7 +57,7 @@ function AddTodoForm({ onAddTodo }) {
 }
 
 AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func.isRequired,
+  onAddTodo: PropTypes.func,
 };
 
 export default AddTodoForm;
