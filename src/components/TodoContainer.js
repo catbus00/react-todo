@@ -16,15 +16,10 @@ const TodoContainer = ({ tableName }) => {
     const idx = todoList.findIndex(({ id: searched }) => searched === id);
     const response = await api.checkTodo(tableName, id, done);
     if (response) {
-      const nextTodoList = [...todoList];
-      const {id, createdTime, fields: {title, done}} = response;
-      nextTodoList[idx] = {
-        title,
-        id,
-        createdTime,
-        isChecked: done
-      };
-      setTodoList(nextTodoList);
+      const list = [...todoList];
+      const todo = list[idx];
+      list[idx] = { title: todo.title, id, createdTime: todo.createdTime, isChecked: done };
+      setTodoList(list);
   }
   }, [tableName, todoList, setTodoList]);
   
