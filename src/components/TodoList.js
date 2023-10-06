@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import TodoListItem from "./TodoListItem";
 
-const TodoList = ({ todoList, onRemoveTodo, handleChange, isChecked }) => {
+const TodoList = ({ todoList, onRemoveTodo, handleChange, areChecked }) => {
   return (
     <ul>
-      {todoList.map((todo) => {
+      {todoList.map((todo, index) => {
         const { id } = todo;
 
         return (
@@ -13,8 +13,8 @@ const TodoList = ({ todoList, onRemoveTodo, handleChange, isChecked }) => {
             key={id}
             todo={todo}
             onRemoveTodo={onRemoveTodo}
-            isChecked={todo.true}
-            handleChange={() => handleChange(id)}
+            idChecked={areChecked[index] ?? undefined}
+            handleChange={(id, done) => handleChange(id, done)}
           />
         );
       })}
@@ -25,7 +25,7 @@ const TodoList = ({ todoList, onRemoveTodo, handleChange, isChecked }) => {
 TodoList.propTypes = {
   todoList: PropTypes.arrayOf(PropTypes.object).isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
-  isChecked: PropTypes.array.isRequired,
+  areChecked: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

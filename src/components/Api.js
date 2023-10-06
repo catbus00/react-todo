@@ -8,7 +8,7 @@ const fetchAndSortTodos = async (table, sortOptions) => {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
     },
   };
-  const endpoint = sortOptions ? `${url(table)}?${sortOptions}` : url(table);
+  const endpoint = sortOptions? `${url(table)}${sortOptions}` : "";
   const response = await fetch(endpoint, options);
   if (!response.ok) {
     const message = `Error: ${response.status}`;
@@ -18,21 +18,11 @@ const fetchAndSortTodos = async (table, sortOptions) => {
   const todos = data.records.map((todo) => ({
     title: todo.fields.title,
     id: todo.id,
-    createdTime: todo.createdTime,
-    isChecked: todo.done,
+    createdTime: new Date(todo.createdTime),
+    isChecked: todo.fields.done ?? false,
   }));
 
-  const sortedTodos = todos.sort((a, b) => {
-    if (a.createdTime > b.createdTime) {
-      return 1;
-    }
-    if (a.createdTime < b.createdTime) {
-      return -1;
-    }
-    return 0;
-  });
-
-  return sortedTodos;
+  return todos;
 };
 
 const postTodo = async (table, title) => {
@@ -92,11 +82,36 @@ const addTodo = async (table, title) => {
   return dataResponse;
 };
 
+const checkTodo = async (table, id, done) => {
+  console.log(table, id, done)
+  
+  const endpoint = `${url(table)}/${id}`;
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+    },
+    body: JSON.stringify({ fields: { done } }),
+  };
+  try {
+    const response = await fetch(endpoint, options);
+    if (!response.ok) {
+      throw new Error(`Error handling checked status on todo: ${response.status}`);
+    }
+    return id;
+  } catch (error) {
+    console.log("Patch checked status Error:", error.message);
+    return undefined;
+  }
+};
+
 const api = {
   fetchAndSortTodos,
   postTodo,
   removeTodo,
   addTodo,
+  checkTodo,
   url,
 };
 
