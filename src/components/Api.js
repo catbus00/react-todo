@@ -22,11 +22,7 @@ const fetchAndSortTodos = async (table, sortOptions) => {
     isChecked: todo.fields.done ?? false,
   }));
 
-  const sortedTodos = sortOptions !== undefined
-  ? todos.sort((a, b) => a.createdTime - b.createdTime)
-  : todos;
-
-  return sortedTodos;
+  return todos;
 };
 
 const postTodo = async (table, title) => {
